@@ -4,6 +4,7 @@ resource "aws_instance" "web" {
   key_name               = "linux-test"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
   availability_zone      = "ap-south-1b"
+  count = 2
 
   tags = {
     Name = "Webserver"
