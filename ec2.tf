@@ -1,10 +1,9 @@
 resource "aws_instance" "web" {
-  ami                    = "ami-06031e2c49c278c8f"
+  ami                    = data.aws_ami.webserver.id
   instance_type          = "t2.micro"
   key_name               = "linux-test"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
   availability_zone      = "ap-south-1b"
-  count = 2
 
   tags = {
     Name = "Webserver"
@@ -41,4 +40,3 @@ resource "aws_vpc_security_group_egress_rule" "Allow_all" {
   ip_protocol       = "-1"
   cidr_ipv4         = "0.0.0.0/0"
 }
-
